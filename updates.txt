@@ -1,0 +1,16 @@
+
+- Analizar adaptar MapStruct a Optional, cuando MapStruct se adapte a la versión.
+
+- Analizar si usar Optional solo en la capa de SERVICE o también en el REPOSITORY.
+
+- Analizar Si aplicar en la lógica de servicio, en el REPOSITORY o RESTCONTROLLER de la petición PATCH. Problema toUserVoUpdate (es default porque es VO mapstruct no soporta)
+
+- Analizar si devolver el objeto borrado en REPOSITORY o SERVICE. Para evitar programación orientada a procedimientos.
+
+- Analizar si referenciar en RESTCONTROLLER el ID de las acciones con el propio ID o UUID u otro.
+
+- Analizar el proceso almacenando este datos UUID para consulta rest en DB, pero no se sabe donde generar el UUID en el Servicio o REPOSITORY.
+
+- Analizar si MapStruct sale rentable, tratarlo como clase con dependencias internas en la clase o como Utils (actual como Utils).
+
+- Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
