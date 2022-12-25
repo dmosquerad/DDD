@@ -14,8 +14,8 @@
     </parent>
 
     <modules>
-        <module>jpa</module>
-        <module>mongo</module>
+        <module>jpa-command</module>
+        <module>mongo-query</module>
     </modules>
 
 </project>

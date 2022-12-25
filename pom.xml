@@ -53,12 +53,12 @@
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>jpa</artifactId>
+                <artifactId>jpa-command</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>mongo</artifactId>
+                <artifactId>mongo-query</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
