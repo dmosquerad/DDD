@@ -1,0 +1,269 @@
+openapi: '3.0.3'
+info:
+  version: 0.0.1
+  title: User API
+paths:
+  /users:
+    post:
+      tags:
+        - users
+      summary: Post an User
+      operationId: createUser
+      requestBody:
+        description: User Body value
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userBody'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+    trace:
+      tags:
+        - users
+      summary: Get all trace User
+      operationId: getTraceUsers
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+  /users/{userUuid}:
+    delete:
+      tags:
+        - users
+      summary: Delete an User By User Uuid
+      operationId: deleteUserByUuid
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '204':
+          description: Expected response to a valid request
+    parameters:
+      - name: userUuid
+        in: path
+        required: true
+        description: Uuid User value
+        schema:
+          type: string
+          format: uuid
+          nullable: false
+    put:
+      tags:
+        - users
+      summary: Put an User By User Uuid
+      operationId: putUserByUuid
+      requestBody:
+        description: User Body value
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userBody'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+    patch:
+      tags:
+        - users
+      summary: Patch an User By User Uuid
+      operationId: patchUserByUuid
+      requestBody:
+        description: User Body value
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userBody'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+    trace:
+      tags:
+        - users
+      summary: Get all trace User
+      operationId: getTraceUsersByUserId
+      responses:
+        '200':
+          description: Expected response to a valid request
+components:
+  schemas:
+    # common
+    data:
+      required:
+        - attribute
+        - uuid
+        - links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+      discriminator:
+        propertyName: type
+    response:
+      required:
+        - uuid
+        - date
+        - status
+        - code
+        - data
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+        date:
+          type: string
+          format: date-time
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        code:
+          type: string
+          nullable: false
+    responseError:
+      required:
+        - uuid
+        - date
+        - status
+        - code
+        - tittle
+        - detail
+        - links
+        - source
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+        date:
+          type: string
+          format: date-time
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        code:
+          type: string
+          nullable: false
+        tittle:
+          type: string
+          nullable: false
+        detail:
+          type: string
+          nullable: false
+        link:
+          type: object
+        source:
+          type: object
+          properties:
+            pointer:
+              type: string
+              nullable: false
+            parameter:
+              type: string
+              nullable: false
+            header:
+              type: object
+        meta:
+          type: object
+    # body
+    userBody:
+      properties:
+        email:
+          type: string
+          format: email
+          nullable: false
+        name:
+          type: string
+          nullable: false
+        role:
+          type: string
+          nullable: false
+        documentType:
+          type: string
+          enum:
+            - DNI
+            - PASSPORT
+            - OTHER
+    links:
+      properties:
+        self:
+          type: string
+          nullable: false
+    # customResponse
+    responseUser:
+      allOf:
+        - $ref: '#/components/schemas/response'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/userDto'
+    # customRequest
+    userDto:
+      allOf:
+        - $ref: '#/components/schemas/data'
+        - type: object
+          required:
+            - attribute
+            - type
+          properties:
+            attribute:
+              allOf:
+                - $ref: '#/components/schemas/userBody'
+                - type: object
+                  required:
+                    - email
+                    - name
+                    - role
+                    - documentType
+            links:
+              allOf:
+                - $ref: '#/components/schemas/links'
+                - type: object
+                  required:
+                    - self

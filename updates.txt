@@ -14,3 +14,5 @@
 - Analizar si MapStruct sale rentable, tratarlo como clase con dependencias internas en la clase o como Utils (actual como Utils).
 
 - Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
+
+- Analizar obterner la respuesta de eventHandler de escritura en DB para devolver el dato exacto.

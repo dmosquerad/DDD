@@ -17,11 +17,15 @@
         <!-- MODULE -->
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>jpa</artifactId>
+            <artifactId>jpa-command</artifactId>
         </dependency>
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>mongo</artifactId>
+            <artifactId>mongo-query</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.architecture.ddd</groupId>
+            <artifactId>rabbitmq</artifactId>
         </dependency>
         <dependency>
             <groupId>com.architecture.ddd</groupId>

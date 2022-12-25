@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service(UserServiceImpl.BEAN)
 @RequiredArgsConstructor
@@ -46,6 +47,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVo getUserById(String id) {
         return this.jpaUserRepositoryQueryBoundary.findById(Long.valueOf(id));
+    }
+
+    @Override
+    public UserVo getUserByUuid(UUID uuid) {
+        return this.jpaUserRepositoryQueryBoundary.findByUuid(uuid);
     }
 
     @Override

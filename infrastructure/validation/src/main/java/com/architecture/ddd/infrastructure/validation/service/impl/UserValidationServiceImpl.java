@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service(UserValidationServiceImpl.BEAN)
 @RequiredArgsConstructor
 public class UserValidationServiceImpl implements UserValidationService {
@@ -20,7 +22,7 @@ public class UserValidationServiceImpl implements UserValidationService {
     private final UserService userService;
 
     @Override
-    public UserVo isValidUserVo(String id) {
-        return this.userService.getUserById(id);
+    public UserVo isValidUserVo(UUID id) {
+        return this.userService.getUserByUuid(id);
     }
 }
