@@ -7,7 +7,7 @@ paths:
     post:
       tags:
         - users
-      summary: Post an User
+      summary: Create an User
       operationId: createUser
       requestBody:
         description: User Body value
@@ -70,8 +70,8 @@ paths:
     put:
       tags:
         - users
-      summary: Put an User By User Uuid
-      operationId: putUserByUuid
+      summary: Create or update all values User
+      operationId: createOrUpdateUserByUuid
       requestBody:
         description: User Body value
         required: true
@@ -95,8 +95,8 @@ paths:
     patch:
       tags:
         - users
-      summary: Patch an User By User Uuid
-      operationId: patchUserByUuid
+      summary: Update current values from User
+      operationId: updateUserByUuid
       requestBody:
         description: User Body value
         required: true
@@ -214,13 +214,10 @@ components:
         email:
           type: string
           format: email
-          nullable: false
         name:
           type: string
-          nullable: false
         role:
           type: string
-          nullable: false
         documentType:
           type: string
           enum:

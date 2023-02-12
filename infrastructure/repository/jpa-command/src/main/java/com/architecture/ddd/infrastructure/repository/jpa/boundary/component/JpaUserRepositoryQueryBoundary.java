@@ -7,8 +7,6 @@ import java.util.UUID;
 
 public interface JpaUserRepositoryQueryBoundary {
 
-    UserVo findById(Long id);
-
     UserVo findByUuid(UUID uuid);
 
     UserVo findFirst();

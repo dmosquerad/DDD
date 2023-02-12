@@ -19,12 +19,12 @@ public class MongoUserCommandRepositoryBoundaryImpl implements MongoUserCommandR
     MongoUserCommandRepository mongoUserCommandRepository;
 
     @Override
-    public UserVo save(UserVo userVo) {
+    public UserVo save(@NonNull final UserVo userVo) {
         return UserVoMapper.INSTANCE.toUserVo(this.mongoUserCommandRepository.save(UserDaoMapper.INSTANCE.toUserDao(userVo)));
     }
 
     @Override
-    public UserVo delete(UserVo userVo) {
+    public UserVo delete(@NonNull final UserVo userVo) {
         this.mongoUserCommandRepository.delete(UserDaoMapper.INSTANCE.toUserDao(userVo));
         return userVo;
     }

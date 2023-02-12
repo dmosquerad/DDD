@@ -28,13 +28,8 @@ public class JpaUserRepositoryQueryBoundaryImpl implements JpaUserRepositoryQuer
     JpaCustomUserQueryRepository jpaCustomUserQueryRepository;
 
     @Override
-    public UserVo findById(Long id) {
-        return UserVoMapper.INSTANCE.toUserVo(this.jpaUserQueryRepository.findById(id).get());
-    }
-
-    @Override
     public UserVo findByUuid(UUID uuid) {
-        return UserVoMapper.INSTANCE.toUserVo(this.jpaUserQueryRepository.findByUuid(uuid).get());
+        return UserVoMapper.INSTANCE.toUserVo(this.jpaUserQueryRepository.findByUuid(uuid));
     }
 
     @Override

@@ -1,18 +1,16 @@
 package com.architecture.ddd.application.rest.clientapi_command.service;
 
-import com.architecture.ddd.application.rest.clientapi_command.dto.ResponseUser;
-import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
-import org.springframework.http.ResponseEntity;
+import com.architecture.ddd.domain.data.vo.UserVo;
 
 import java.util.UUID;
 
 public interface UserCommandServiceController {
 
-    ResponseEntity<ResponseUser> createUser(UserBody userBody);
+    UserVo createUser(UserVo userVo);
 
-    ResponseEntity<ResponseUser> deleteUserByUuid(UUID uuid);
+    UserVo deleteUserByUuid(UUID uuid);
 
-    ResponseEntity<ResponseUser> putUserByUuid(UUID uuid, UserBody userBody);
+    UserVo createOrUpdateUser(UserVo userVo);
 
-    ResponseEntity<ResponseUser> patchUserByUuid(UUID uuid, UserBody userBody);
+    UserVo updateUser(UserVo userVo);
 }

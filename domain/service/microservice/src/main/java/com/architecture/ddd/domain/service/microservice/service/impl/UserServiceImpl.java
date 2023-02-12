@@ -45,27 +45,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVo getUserById(String id) {
-        return this.jpaUserRepositoryQueryBoundary.findById(Long.valueOf(id));
-    }
-
-    @Override
-    public UserVo getUserByUuid(UUID uuid) {
+    public UserVo getUserByUuid(@NonNull final UUID uuid) {
         return this.jpaUserRepositoryQueryBoundary.findByUuid(uuid);
     }
 
     @Override
-    public UserVo saveUser(UserVo userVo) {
+    public UserVo saveUser(@NonNull final UserVo userVo) {
         return this.jpaUserRepositoryCommandBoundary.save(userVo);
     }
 
-    @Override
-    public UserVo updateUser(UserVo userVo) {
-        return this.jpaUserRepositoryCommandBoundary.save(userVo);
-    }
 
     @Override
-    public UserVo deleteUser(UserVo userVo) {
+    public UserVo deleteUser(@NonNull final UserVo userVo) {
         return this.jpaUserRepositoryCommandBoundary.delete(userVo);
     }
 

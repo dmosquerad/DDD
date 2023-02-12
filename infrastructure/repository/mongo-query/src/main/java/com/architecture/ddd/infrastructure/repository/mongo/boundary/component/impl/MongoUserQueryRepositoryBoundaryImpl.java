@@ -30,12 +30,7 @@ public class MongoUserQueryRepositoryBoundaryImpl implements MongoUserQueryRepos
     public UserVo findFirst() {
         return UserVoMapper.INSTANCE.toUserVo(this.mongoCustomUserReadDaoRepository.findFirstUser());
     }
-
-    @Override
-    public UserVo findById(String id) {
-        return UserVoMapper.INSTANCE.toUserVo(this.mongoUserQueryRepository.findById(id).get());
-    }
-
+    
     @Override
     public List<UserVo> findAll() {
         return UserVoMapper.INSTANCE.toUserVo(this.mongoUserQueryRepository.findAll());

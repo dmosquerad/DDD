@@ -16,3 +16,11 @@
 - Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
 
 - Analizar obterner la respuesta de eventHandler de escritura en DB para devolver el dato exacto.
+
+- Analizar si poner transacción en el controlador o en el servicio del modulo del controlador.
+
+- Analizar si usar modulo de validacion o no
+
+- Analizar si crear dos objetos uno para crear y put y otro para patch.
+
+- Analizar poner un valor a como posible null tanto en modelo como en openApi

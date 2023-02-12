@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface MongoUserQueryRepositoryBoundary {
 
-    UserVo findById(String id);
-
     UserVo findFirst();
 
     List<UserVo> findAll();

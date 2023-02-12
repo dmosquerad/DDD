@@ -11,13 +11,9 @@ public interface UserService {
 
     List<UserVo> getUserAll();
 
-    UserVo getUserById(String id);
-
     UserVo getUserByUuid(UUID uuid);
 
     UserVo saveUser(UserVo userVo);
-
-    UserVo updateUser(UserVo userVo);
 
     UserVo deleteUser(UserVo userVo);
 }

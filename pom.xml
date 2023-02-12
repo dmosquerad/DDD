@@ -76,6 +76,11 @@
                 <artifactId>command-event-handler</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- SPRING BOOT -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

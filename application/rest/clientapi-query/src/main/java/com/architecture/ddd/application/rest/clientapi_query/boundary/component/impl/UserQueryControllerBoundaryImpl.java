@@ -4,6 +4,7 @@ import com.architecture.ddd.application.rest.clientapi_query.boundary.component.
 import com.architecture.ddd.application.rest.clientapi_query.boundary.mapper.dto.UserDtoMapper;
 import com.architecture.ddd.application.rest.clientapi_query.dto.UserDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserQueryControllerBoundaryImpl implements UserQueryControllerBoundary {
 
-    public final static String BEAN = "userControllerBoundaryImpl";
+    public final static String BEAN = "userQueryControllerBoundaryImpl";
 
     @Override
-    public UserDto toUserDto(UserVo userVo) {
+    public UserDto toUserDto(@NonNull final UserVo userVo) {
         return UserDtoMapper.INSTANCE.toUserDto(userVo);
     }
 
     @Override
-    public List<UserDto> toUserDto(List<UserVo> userVo) {
+    public List<UserDto> toUserDto(@NonNull final List<UserVo> userVo) {
         return UserDtoMapper.INSTANCE.toUserDto(userVo);
     }
 }

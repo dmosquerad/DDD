@@ -1,14 +1,13 @@
 package com.architecture.ddd.application.rest.clientapi_query.service;
 
-import com.architecture.ddd.application.rest.clientapi_query.dto.ResponseUser;
-import org.springframework.http.ResponseEntity;
+import com.architecture.ddd.domain.data.vo.UserVo;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserQueryServiceController {
 
-    ResponseEntity<ResponseUser> getAllUsers();
+    List<UserVo> getAllUsers();
 
-    ResponseEntity<ResponseUser> getUserByUuid(UUID uuid);
-
+    UserVo getUserByUuid(UUID uuid);
 }

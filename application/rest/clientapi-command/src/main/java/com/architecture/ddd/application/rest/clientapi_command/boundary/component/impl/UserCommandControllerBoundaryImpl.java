@@ -6,8 +6,11 @@ import com.architecture.ddd.application.rest.clientapi_command.boundary.mapper.v
 import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
 import com.architecture.ddd.application.rest.clientapi_command.dto.UserDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component(UserCommandControllerBoundaryImpl.BEAN)
 @RequiredArgsConstructor
@@ -16,23 +19,18 @@ public class UserCommandControllerBoundaryImpl implements UserCommandControllerB
     public final static String BEAN = "userControllerBoundaryImpl";
 
     @Override
-    public UserDto toUserDto(UserVo userVo) {
+    public UserDto toUserDto(@NonNull final UserVo userVo) {
         return UserDtoMapper.INSTANCE.toUserDto(userVo);
     }
 
     @Override
-    public UserVo toUserVoPost(UserBody userBody) {
-        return UserVoMapper.INSTANCE.toUserVoInsert(userBody);
+    public UserVo toUserVo(@NonNull final UserBody userBody) {
+        return UserVoMapper.INSTANCE.toUserVo(userBody);
     }
 
     @Override
-    public UserVo toUserVoPut(UserVo userVo, UserBody userBody) {
-        return UserVoMapper.INSTANCE.toUserVoPut(userVo, userBody);
-    }
-
-    @Override
-    public UserVo toUserVoPatch(UserVo userVo, UserBody userBody) {
-        return UserVoMapper.INSTANCE.toUserVoPatch(userVo, userBody);
+    public UserVo toUserVoFromUserBodyAndUuid(@NonNull final UUID uuid, @NonNull final UserBody userBody) {
+        return UserVoMapper.INSTANCE.toUserVoFromUserBodyAndUuid(uuid, userBody);
     }
 
 }

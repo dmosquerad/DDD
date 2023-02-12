@@ -2,8 +2,12 @@ package com.architecture.ddd.application.rest.clientapi_command.boundary.mapper.
 
 import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
 import com.architecture.ddd.domain.data.vo.UserVo;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+
+import java.util.UUID;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface UserVoMapper {
@@ -12,18 +16,9 @@ public interface UserVoMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(java.util.UUID.randomUUID())")
-    UserVo toUserVoInsert(UserBody userBody);
+    UserVo toUserVo(UserBody userBody);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "uuid", ignore = true)
-    @Mapping(target = "email", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "role", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "name", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "documentType", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    UserVo toUserVoPatch(@MappingTarget UserVo userVo, UserBody userBody);
-
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "uuid", ignore = true)
-    UserVo toUserVoPut(@MappingTarget UserVo userVo, UserBody userBody);
+    UserVo toUserVoFromUserBodyAndUuid(UUID uuid, UserBody userBody);
 
 }

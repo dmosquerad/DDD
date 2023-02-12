@@ -7,8 +7,11 @@ import com.architecture.ddd.infrastructure.validation.service.UserValidationServ
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Service(UserValidationServiceImpl.BEAN)
@@ -21,8 +24,15 @@ public class UserValidationServiceImpl implements UserValidationService {
     @Qualifier(UserServiceImpl.BEAN)
     private final UserService userService;
 
+    //Analizar si volver a usar
     @Override
-    public UserVo isValidUserVo(UUID id) {
-        return this.userService.getUserByUuid(id);
+    public UserVo isValidUserVo(@NonNull final UUID id) {
+        UserVo existUserVo = this.userService.getUserByUuid(id);
+
+        if (Objects.isNull(existUserVo)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        return existUserVo;
     }
 }

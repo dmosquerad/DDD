@@ -27,25 +27,25 @@ public class UserCommandEventListenerImpl implements UserCommandEventListener {
 
     @Override
     @TransactionalEventListener(classes = UserPostEvent.class, phase = TransactionPhase.BEFORE_COMMIT)
-    public UserVo handleUserPostEvent(UserPostEvent userPostEvent) {
+    public UserVo handleUserPostEvent(@NonNull final UserPostEvent userPostEvent) {
         return this.userService.saveUser(userPostEvent.getMessage());
     }
 
     @Override
     @TransactionalEventListener(classes = UserPutEvent.class, phase = TransactionPhase.BEFORE_COMMIT)
-    public UserVo handleUserPutEvent(UserPutEvent userPutEvent) {
-        return this.userService.updateUser(userPutEvent.getMessage());
+    public UserVo handleUserPutEvent(@NonNull final UserPutEvent userPutEvent) {
+        return this.userService.saveUser(userPutEvent.getMessage());
     }
 
     @Override
     @TransactionalEventListener(classes = UserPatchEvent.class, phase = TransactionPhase.BEFORE_COMMIT)
-    public UserVo handleUserPatchEvent(UserPatchEvent userPatchEvent) {
-        return this.userService.updateUser(userPatchEvent.getMessage());
+    public UserVo handleUserPatchEvent(@NonNull final UserPatchEvent userPatchEvent) {
+        return this.userService.saveUser(userPatchEvent.getMessage());
     }
 
     @Override
     @TransactionalEventListener(classes = UserDeleteEvent.class, phase = TransactionPhase.BEFORE_COMMIT)
-    public UserVo handleUserDeleteEvent(UserDeleteEvent userDeleteEvent) {
+    public UserVo handleUserDeleteEvent(@NonNull final UserDeleteEvent userDeleteEvent) {
         return this.userService.deleteUser(userDeleteEvent.getMessage());
     }
 
