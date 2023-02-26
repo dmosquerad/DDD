@@ -1,13 +1,13 @@
 package com.architecture.ddd.application.rest.clientapi.query.boundary.component;
 
-import com.architecture.ddd.application.rest.clientapi.query.dto.UserDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserQueryControllerBoundary {
 
-    UserDto toUserDto(UserVo userVo);
+    List<UserVo> getAllUsers();
 
-    List<UserDto> toUserDto(List<UserVo> userVo);
+    UserVo getUserByUuid(UUID uuid);
 }

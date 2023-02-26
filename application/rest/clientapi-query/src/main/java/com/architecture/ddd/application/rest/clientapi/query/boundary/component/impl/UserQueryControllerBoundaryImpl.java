@@ -1,28 +1,41 @@
 package com.architecture.ddd.application.rest.clientapi.query.boundary.component.impl;
 
 import com.architecture.ddd.application.rest.clientapi.query.boundary.component.UserQueryControllerBoundary;
-import com.architecture.ddd.application.rest.clientapi.query.boundary.mapper.dto.UserDtoMapper;
-import com.architecture.ddd.application.rest.clientapi.query.dto.UserDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
+import com.architecture.ddd.domain.service.microservice.service.UserService;
+import com.architecture.ddd.domain.service.microservice.service.impl.UserServiceImpl;
+import com.architecture.ddd.infrastructure.validation.service.UserValidationService;
+import com.architecture.ddd.infrastructure.validation.service.impl.UserValidationServiceImpl;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
-@Component(UserQueryControllerBoundaryImpl.BEAN)
+@Service(UserQueryControllerBoundaryImpl.BEAN)
 @RequiredArgsConstructor
 public class UserQueryControllerBoundaryImpl implements UserQueryControllerBoundary {
 
     public final static String BEAN = "userQueryControllerBoundaryImpl";
 
+    @NonNull
+    @Qualifier(UserServiceImpl.BEAN)
+    private final UserService userService;
+
+    @NonNull
+    @Qualifier(UserValidationServiceImpl.BEAN)
+    private final UserValidationService userValidationService;
+
     @Override
-    public UserDto toUserDto(@NonNull final UserVo userVo) {
-        return UserDtoMapper.INSTANCE.toUserDto(userVo);
+    public List<UserVo> getAllUsers() {
+        return this.userService.getUserAll();
     }
 
     @Override
-    public List<UserDto> toUserDto(@NonNull final List<UserVo> userVo) {
-        return UserDtoMapper.INSTANCE.toUserDto(userVo);
+    public UserVo getUserByUuid(@NonNull final UUID uuid) {
+        return this.userService.getUserByUuid(uuid);
     }
+
 }
