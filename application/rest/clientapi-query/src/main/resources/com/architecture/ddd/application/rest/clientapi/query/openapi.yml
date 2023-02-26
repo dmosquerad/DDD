@@ -179,6 +179,11 @@ components:
           type: object
     # body
     userBody:
+      required:
+        - email
+        - name
+        - role
+        - documentType
       properties:
         email:
           type: string
@@ -197,6 +202,8 @@ components:
             - PASSPORT
             - OTHER
     links:
+      required:
+        - self
       properties:
         self:
           type: string
@@ -210,8 +217,7 @@ components:
             data:
               type: array
               items:
-                allOf:
-                  - $ref: '#/components/schemas/userDto'
+                $ref: '#/components/schemas/userDto'
     # customRequest
     userDto:
       allOf:
@@ -222,17 +228,6 @@ components:
             - type
           properties:
             attribute:
-              allOf:
-                - $ref: '#/components/schemas/userBody'
-                - type: object
-                  required:
-                    - email
-                    - name
-                    - role
-                    - documentType
+              $ref: '#/components/schemas/userBody'
             links:
-              allOf:
-                - $ref: '#/components/schemas/links'
-                - type: object
-                  required:
-                    - self
+              $ref: '#/components/schemas/links'
