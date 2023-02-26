@@ -16,4 +16,7 @@ public interface UserVoMapper {
     @Mapping(target = "name", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "documentType", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     UserVo updateUserVo(@MappingTarget UserVo userVoExpected, UserVo userVoCurrent);
+
+    @Mapping(target = "id", source = "id")
+    UserVo toUserVoFromId(String id, UserVo userVoCurrent);
 }

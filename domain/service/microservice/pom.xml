@@ -31,6 +31,10 @@
             <groupId>com.architecture.ddd</groupId>
             <artifactId>data</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.architecture.ddd</groupId>
+            <artifactId>command-event-handler</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

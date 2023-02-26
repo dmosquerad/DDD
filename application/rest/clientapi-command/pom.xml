@@ -13,7 +13,7 @@
     </parent>
 
     <properties>
-        <openapi.dir>com/architecture/ddd/application/rest/clientapi_command</openapi.dir>
+        <openapi.dir>com/architecture/ddd/application/rest/clientapi/command</openapi.dir>
     </properties>
 
     <dependencies>
@@ -26,11 +26,6 @@
         <dependency>
             <groupId>com.architecture.ddd</groupId>
             <artifactId>validation</artifactId>
-        </dependency>
-        <!-- analizar eliminar -->
-        <dependency>
-            <groupId>com.architecture.ddd</groupId>
-            <artifactId>command-event-handler</artifactId>
         </dependency>
         <!-- SPRINGBOOT -->
         <dependency>
@@ -59,10 +54,10 @@
                             <skipOperationExample>true</skipOperationExample>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <output>${project.build.directory}/generated-sources</output>
-                            <invokerPackage>com.architecture.ddd.application.rest.clientapi_command.handler
+                            <invokerPackage>com.architecture.ddd.application.rest.clientapi.command.handler
                             </invokerPackage>
-                            <apiPackage>com.architecture.ddd.application.rest.clientapi_command.rest</apiPackage>
-                            <modelPackage>com.architecture.ddd.application.rest.clientapi_command.dto</modelPackage>
+                            <apiPackage>com.architecture.ddd.application.rest.clientapi.command.rest</apiPackage>
+                            <modelPackage>com.architecture.ddd.application.rest.clientapi-command.dto</modelPackage>
                             <inputSpec>${project.basedir}/src/main/resources/${openapi.dir}/openapi.yml</inputSpec>
                             <configOptions>
                                 <java8>false</java8>

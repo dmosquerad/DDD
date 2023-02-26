@@ -13,7 +13,7 @@
     </parent>
 
     <properties>
-        <openapi.dir>com/architecture/ddd/application/rest/clientapi_query</openapi.dir>
+        <openapi.dir>com/architecture/ddd/application/rest/clientapi/query</openapi.dir>
     </properties>
 
     <dependencies>
@@ -57,10 +57,10 @@
                             <skipOperationExample>true</skipOperationExample>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <output>${project.build.directory}/generated-sources</output>
-                            <invokerPackage>com.architecture.ddd.application.rest.clientapi_query.handler
+                            <invokerPackage>com.architecture.ddd.application.rest.clientapi.query.handler
                             </invokerPackage>
-                            <apiPackage>com.architecture.ddd.application.rest.clientapi_query.rest</apiPackage>
-                            <modelPackage>com.architecture.ddd.application.rest.clientapi_query.dto</modelPackage>
+                            <apiPackage>com.architecture.ddd.application.rest.clientapi.query.rest</apiPackage>
+                            <modelPackage>com.architecture.ddd.application.rest.clientapi.query.dto</modelPackage>
                             <inputSpec>${project.basedir}/src/main/resources/${openapi.dir}/openapi.yml</inputSpec>
                             <configOptions>
                                 <java8>false</java8>

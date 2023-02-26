@@ -53,12 +53,27 @@
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
+                <artifactId>jpa-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
                 <artifactId>jpa-command</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
+                <artifactId>mongo-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
                 <artifactId>mongo-query</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>mongo-command</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -211,6 +226,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

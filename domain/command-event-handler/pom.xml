@@ -21,7 +21,11 @@
         <!-- MODULE -->
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>microservice</artifactId>
+            <artifactId>data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.architecture.ddd</groupId>
+            <artifactId>mongo-command</artifactId>
         </dependency>
     </dependencies>
 

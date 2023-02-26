@@ -1,0 +1,16 @@
+package com.architecture.ddd.infrastructure.repository.jpa.command.boundary.component;
+
+import com.architecture.ddd.domain.data.vo.UserVo;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface JpaUserRepositoryQueryBoundary {
+
+    UserVo findByUuid(UUID uuid);
+
+    UserVo findFirst();
+
+    List<UserVo> findAll();
+
+}

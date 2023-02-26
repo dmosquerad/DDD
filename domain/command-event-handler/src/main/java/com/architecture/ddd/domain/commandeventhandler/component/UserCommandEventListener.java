@@ -1,18 +1,11 @@
 package com.architecture.ddd.domain.commandeventhandler.component;
 
 import com.architecture.ddd.domain.commandeventhandler.event.UserDeleteEvent;
-import com.architecture.ddd.domain.commandeventhandler.event.UserPatchEvent;
-import com.architecture.ddd.domain.commandeventhandler.event.UserPostEvent;
-import com.architecture.ddd.domain.commandeventhandler.event.UserPutEvent;
-import com.architecture.ddd.domain.data.vo.UserVo;
+import com.architecture.ddd.domain.commandeventhandler.event.UserSaveEvent;
 
 public interface UserCommandEventListener {
 
-    UserVo handleUserPostEvent(UserPostEvent userPostEvent);
+    void handleUserSaveEvent(UserSaveEvent userSaveEvent);
 
-    UserVo handleUserPutEvent(UserPutEvent userPutEvent);
-
-    UserVo handleUserPatchEvent(UserPatchEvent userPatchEvent);
-
-    UserVo handleUserDeleteEvent(UserDeleteEvent userDeleteEvent);
+    void handleUserDeleteEvent(UserDeleteEvent userDeleteEvent);
 }
