@@ -22,10 +22,9 @@
             <groupId>com.architecture.ddd</groupId>
             <artifactId>data</artifactId>
         </dependency>
-        <!-- analizar eliminar -->
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>validation</artifactId>
+            <artifactId>microservice</artifactId>
         </dependency>
         <!-- SPRINGBOOT -->
         <dependency>

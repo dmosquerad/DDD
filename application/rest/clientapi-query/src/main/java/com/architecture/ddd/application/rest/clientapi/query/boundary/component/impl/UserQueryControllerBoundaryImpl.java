@@ -4,8 +4,6 @@ import com.architecture.ddd.application.rest.clientapi.query.boundary.component.
 import com.architecture.ddd.domain.data.vo.UserVo;
 import com.architecture.ddd.domain.service.microservice.service.UserService;
 import com.architecture.ddd.domain.service.microservice.service.impl.UserServiceImpl;
-import com.architecture.ddd.infrastructure.validation.service.UserValidationService;
-import com.architecture.ddd.infrastructure.validation.service.impl.UserValidationServiceImpl;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,10 +21,6 @@ public class UserQueryControllerBoundaryImpl implements UserQueryControllerBound
     @NonNull
     @Qualifier(UserServiceImpl.BEAN)
     private final UserService userService;
-
-    @NonNull
-    @Qualifier(UserValidationServiceImpl.BEAN)
-    private final UserValidationService userValidationService;
 
     @Override
     public List<UserVo> getAllUsers() {

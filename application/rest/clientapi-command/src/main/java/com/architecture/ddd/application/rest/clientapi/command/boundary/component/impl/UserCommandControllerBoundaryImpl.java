@@ -1,8 +1,7 @@
 package com.architecture.ddd.application.rest.clientapi.command.boundary.component.impl;
 
 import com.architecture.ddd.application.rest.clientapi.command.boundary.component.UserCommandControllerBoundary;
-import com.architecture.ddd.domain.data.boundary.component.UserHandlerBoundary;
-import com.architecture.ddd.domain.data.boundary.component.impl.UserHandlerHandlerBoundaryImpl;
+import com.architecture.ddd.domain.data.boundary.mapper.UserVoMapper;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import com.architecture.ddd.domain.service.microservice.service.UserService;
 import com.architecture.ddd.domain.service.microservice.service.impl.UserServiceImpl;
@@ -22,10 +21,6 @@ import java.util.UUID;
 public class UserCommandControllerBoundaryImpl implements UserCommandControllerBoundary {
 
     public final static String BEAN = "userCommandControllerBoundaryImpl";
-
-    @NonNull
-    @Qualifier(UserHandlerHandlerBoundaryImpl.BEAN)
-    private final UserHandlerBoundary userHandlerBoundary;
 
     @NonNull
     @Qualifier(UserServiceImpl.BEAN)
@@ -54,7 +49,7 @@ public class UserCommandControllerBoundaryImpl implements UserCommandControllerB
     public UserVo createOrUpdateUser(@NonNull final UserVo userVo) {
         UserVo existUserVo = this.userService.getUserByUuid(userVo.getUuid());
 
-        UserVo userVoCurrent = this.userHandlerBoundary.toUserVoFromId(existUserVo.getId(), userVo);
+        UserVo userVoCurrent = UserVoMapper.INSTANCE.toUserVoFromId(existUserVo.getId(), userVo);
 
         return this.userService.saveUser(userVoCurrent);
     }
@@ -68,7 +63,7 @@ public class UserCommandControllerBoundaryImpl implements UserCommandControllerB
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        UserVo userVoCurrent = this.userHandlerBoundary.updateUserVo(existUserVo, userVo);
+        UserVo userVoCurrent = UserVoMapper.INSTANCE.updateUserVo(existUserVo, userVo);
 
         return this.userService.saveUser(userVoCurrent);
     }

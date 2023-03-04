@@ -36,10 +36,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.architecture.ddd</groupId>
-            <artifactId>validation</artifactId>
-        </dependency>
     </dependencies>
     <build>
         <plugins>

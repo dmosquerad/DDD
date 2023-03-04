@@ -7,6 +7,7 @@ import com.architecture.ddd.application.rest.clientapi.command.boundary.mapper.v
 import com.architecture.ddd.application.rest.clientapi.command.rest.UsersApi;
 import com.architecture.ddd.application.rest.clientapi_command.dto.ResponseUser;
 import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequired;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -69,8 +70,8 @@ public class UserCommandControllerImpl implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<ResponseUser> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBody userBody) {
-        UserVo userVo = this.userCommandControllerBoundary.updateUser(UserVoMapper.INSTANCE.toUserVoFromUserBodyAndUuid(userUuid, userBody));
+    public ResponseEntity<ResponseUser> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyNonRequired userBodyNonRequired) {
+        UserVo userVo = this.userCommandControllerBoundary.updateUser(UserVoMapper.INSTANCE.toUserVoFromUserBodyNonRequiredAndUuid(userUuid, userBodyNonRequired));
 
         return ResponseEntity.ok(ResponseUser.builder()
                 .uuid(UUID.randomUUID())

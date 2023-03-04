@@ -5,10 +5,10 @@ import lombok.Data;
 
 import java.util.UUID;
 
-//Mirar quitar setter mapstruct problem
-@Data
-//Mirar quitar setter mapstruct problem
+//Añadir @Builder @Value en vez de @Data
+//@Builder
 //@Value
+@Data
 public class UserVo {
 
     String id;

@@ -109,6 +109,13 @@ components:
           nullable: false
       discriminator:
         propertyName: type
+    links:
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          nullable: false
     response:
       required:
         - uuid
@@ -177,37 +184,6 @@ components:
               type: object
         meta:
           type: object
-    # body
-    userBody:
-      required:
-        - email
-        - name
-        - role
-        - documentType
-      properties:
-        email:
-          type: string
-          format: email
-          nullable: false
-        name:
-          type: string
-          nullable: false
-        role:
-          type: string
-          nullable: false
-        documentType:
-          type: string
-          enum:
-            - DNI
-            - PASSPORT
-            - OTHER
-    links:
-      required:
-        - self
-      properties:
-        self:
-          type: string
-          nullable: false
     # customResponse
     responseUser:
       allOf:
@@ -231,3 +207,29 @@ components:
               $ref: '#/components/schemas/userBody'
             links:
               $ref: '#/components/schemas/links'
+    # body NonRequired
+    userBodyNonRequired:
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+        documentType:
+          type: string
+          enum:
+            - DNI
+            - PASSPORT
+            - OTHER
+    # body Required
+    userBody:
+      allOf:
+        - $ref: '#/components/schemas/userBodyNonRequired'
+        - type: object
+          required:
+            - email
+            - name
+            - role
+            - documentType

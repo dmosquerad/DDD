@@ -1,26 +1,34 @@
 
-- Analizar adaptar MapStruct a Optional, cuando MapStruct se adapte a la versión.
-
 - Analizar si usar Optional solo en la capa de SERVICE o también en el REPOSITORY.
+- Analizar adaptar MapStruct a Optional, cuando MapStruct se adapte a la versión.
+Esperar a mapstruct que tenga optional
 
 - Analizar Si aplicar en la lógica de servicio, en el REPOSITORY o RESTCONTROLLER de la petición PATCH. Problema toUserVoUpdate (es default porque es VO mapstruct no soporta)
+Se añade en el mapper, ya se esta aplicando. Se analiza este caso para evitar @Data en Vo
 
 - Analizar si devolver el objeto borrado en REPOSITORY o SERVICE. Para evitar programación orientada a procedimientos.
+Si es borrando no hacer porque JPA no decide el momento exacto del borrado y tambien evitar en elementos asincronos porque son asincronos en todos los demás necesarios
 
 - Analizar si referenciar en RESTCONTROLLER el ID de las acciones con el propio ID o UUID u otro.
+Se utiliza el uuid ya se aplico tambien en mongo
 
 - Analizar el proceso almacenando este datos UUID para consulta rest en DB, pero no se sabe donde generar el UUID en el Servicio o REPOSITORY.
+Se autogenera en el mapeo si es nuevo si no se detecta del repository
 
 - Analizar si MapStruct sale rentable, tratarlo como clase con dependencias internas en la clase o como Utils (actual como Utils).
+Se trata como utllis logica de negocio en boundary o service.
 
 - Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
 
 - Analizar obterner la respuesta de eventHandler de escritura en DB para devolver el dato exacto.
 
 - Analizar si poner transacción en el controlador o en el servicio del modulo del controlador.
+Se pone en el servicio (boundary del controlador).
 
-- Analizar si usar modulo de validacion o no
+- Añadir el modulo de validacion en la logica del microservicio, valida datos del objeto ya buscado en el repositorio y transformado a VO.
+Se añade la validacion en la capa de servicio validando el VO, pasando el objeto y comprobando el objeto es valido.
 
 - Analizar si crear dos objetos uno para crear y put y otro para patch.
+Se realiza un UserBodyNonRequiredDto para indicar que no valida datos
 
 - Analizar poner un valor a como posible null tanto en modelo como en openApi

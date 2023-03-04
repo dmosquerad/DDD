@@ -1,6 +1,7 @@
 package com.architecture.ddd.application.rest.clientapi.command.boundary.mapper.vo;
 
 import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequired;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,5 +21,8 @@ public interface UserVoMapper {
 
     @Mapping(target = "id", ignore = true)
     UserVo toUserVoFromUserBodyAndUuid(UUID uuid, UserBody userBody);
+
+    @Mapping(target = "id", ignore = true)
+    UserVo toUserVoFromUserBodyNonRequiredAndUuid(UUID uuid, UserBodyNonRequired userBodyNonRequired);
 
 }
