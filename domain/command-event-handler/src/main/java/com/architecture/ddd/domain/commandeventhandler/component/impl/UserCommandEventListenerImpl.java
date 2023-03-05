@@ -16,7 +16,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @RequiredArgsConstructor
 public class UserCommandEventListenerImpl implements UserCommandEventListener {
 
-    public final static String BEAN = "UserCommandEventListenerImpl";
+    public static final String BEAN = "UserCommandEventListenerImpl";
 
     @NonNull
     @Qualifier(MongoUserCommandRepositoryBoundaryImpl.BEAN)

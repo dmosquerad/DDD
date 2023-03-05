@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserQueryControllerBoundaryImpl implements UserQueryControllerBoundary {
 
-    public final static String BEAN = "userQueryControllerBoundaryImpl";
+    public static final String BEAN = "userQueryControllerBoundaryImpl";
 
     @NonNull
     @Qualifier(UserServiceImpl.BEAN)

@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MongoUserQueryRepositoryBoundaryImpl implements MongoUserQueryRepositoryBoundary {
 
-    public final static String BEAN = "mongoUserQueryRepositoryBoundaryImpl";
+    public static final String BEAN = "mongoUserQueryRepositoryBoundaryImpl";
 
     @NonNull
     MongoUserQueryRepository mongoUserQueryRepository;

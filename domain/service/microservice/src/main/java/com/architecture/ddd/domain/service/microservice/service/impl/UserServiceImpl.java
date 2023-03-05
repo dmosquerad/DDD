@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    public final static String BEAN = "userServiceImpl";
+    public static final String BEAN = "userServiceImpl";
 
     @NonNull
     @Qualifier(JpaUserRepositoryCommandBoundaryImpl.BEAN)

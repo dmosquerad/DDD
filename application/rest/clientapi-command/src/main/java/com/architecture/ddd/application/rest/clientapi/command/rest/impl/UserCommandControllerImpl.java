@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserCommandControllerImpl implements UsersApi {
 
-    public final static String BEAN = "userCommandControllerImpl";
+    public static final String BEAN = "userCommandControllerImpl";
 
     @NonNull
     @Qualifier(UserCommandControllerBoundaryImpl.BEAN)
@@ -58,7 +58,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUser> createOrUpdateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBody userBody) {
-        UserVo userVo = this.userCommandControllerBoundary.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUserBodyAndUuid(userUuid, userBody));
+        UserVo userVo = this.userCommandControllerBoundary.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBody(userUuid, userBody));
 
         return ResponseEntity.ok(ResponseUser.builder()
                 .uuid(UUID.randomUUID())
@@ -71,7 +71,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUser> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyNonRequired userBodyNonRequired) {
-        UserVo userVo = this.userCommandControllerBoundary.updateUser(UserVoMapper.INSTANCE.toUserVoFromUserBodyNonRequiredAndUuid(userUuid, userBodyNonRequired));
+        UserVo userVo = this.userCommandControllerBoundary.updateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyNonRequired(userUuid, userBodyNonRequired));
 
         return ResponseEntity.ok(ResponseUser.builder()
                 .uuid(UUID.randomUUID())

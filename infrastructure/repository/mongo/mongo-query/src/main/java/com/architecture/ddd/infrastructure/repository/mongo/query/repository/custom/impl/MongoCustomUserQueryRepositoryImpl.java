@@ -14,7 +14,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class MongoCustomUserQueryRepositoryImpl implements MongoCustomUserQueryRepository {
 
-    public final static String BEAN = "mongoCustomUserQueryRepositoryImpl";
+    public static final String BEAN = "mongoCustomUserQueryRepositoryImpl";
 
     @NonNull
     MongoTemplate mongoTemplate;
