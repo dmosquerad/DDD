@@ -13,18 +13,18 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class JpaUserRepositoryCommandBoundaryImpl implements JpaUserRepositoryCommandBoundary {
 
-    public final static String BEAN = "jpaUserRepositoryCommandBoundaryImpl";
+    public static final String BEAN = "jpaUserRepositoryCommandBoundaryImpl";
 
     @NonNull
     JpaUserCommandRepository jpaUserCommandRepository;
 
     @Override
-    public UserVo save(UserVo userVo) {
+    public UserVo save(final @NonNull UserVo userVo) {
         return UserVoMapper.INSTANCE.toUserVo(this.jpaUserCommandRepository.save(UserDaoMapper.INSTANCE.toUserDao(userVo)));
     }
 
     @Override
-    public UserVo delete(UserVo userVo) {
+    public UserVo delete(final @NonNull UserVo userVo) {
         this.jpaUserCommandRepository.delete(UserDaoMapper.INSTANCE.toUserDao(userVo));
         return userVo;
     }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MongoUserCommandRepositoryBoundaryImpl implements MongoUserCommandRepositoryBoundary {
 
-    public final static String BEAN = "mongoUserCommandRepositoryBoundaryImpl";
+    public static final String BEAN = "mongoUserCommandRepositoryBoundaryImpl";
 
     @NonNull
     MongoUserCommandRepository mongoUserCommandRepository;

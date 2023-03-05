@@ -4,7 +4,7 @@
 Esperar a mapstruct que tenga optional
 
 - Analizar Si aplicar en la lógica de servicio, en el REPOSITORY o RESTCONTROLLER de la petición PATCH. Problema toUserVoUpdate (es default porque es VO mapstruct no soporta)
-Se añade en el mapper, ya se esta aplicando. Se analiza este caso para evitar @Data en Vo
+Se añade en el validator para validar el objeto asi se trata el objeto como VO siempre.
 
 - Analizar si devolver el objeto borrado en REPOSITORY o SERVICE. Para evitar programación orientada a procedimientos.
 Si es borrando no hacer porque JPA no decide el momento exacto del borrado y tambien evitar en elementos asincronos porque son asincronos en todos los demás necesarios
@@ -16,7 +16,7 @@ Se utiliza el uuid ya se aplico tambien en mongo
 Se autogenera en el mapeo si es nuevo si no se detecta del repository
 
 - Analizar si MapStruct sale rentable, tratarlo como clase con dependencias internas en la clase o como Utils (actual como Utils).
-Se trata como utllis logica de negocio en boundary o service.
+Se trata como utils logica de negocio en boundary o service.
 
 - Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
 

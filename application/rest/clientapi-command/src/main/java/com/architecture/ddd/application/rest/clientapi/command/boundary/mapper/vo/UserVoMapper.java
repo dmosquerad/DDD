@@ -20,9 +20,11 @@ public interface UserVoMapper {
     UserVo toUserVo(UserBody userBody);
 
     @Mapping(target = "id", ignore = true)
-    UserVo toUserVoFromUserBodyAndUuid(UUID uuid, UserBody userBody);
+    UserVo toUserVoFromUuidAndUserBody(UUID uuid, UserBody userBody);
 
     @Mapping(target = "id", ignore = true)
-    UserVo toUserVoFromUserBodyNonRequiredAndUuid(UUID uuid, UserBodyNonRequired userBodyNonRequired);
+    UserVo toUserVoFromUuidAndUserBodyNonRequired(UUID uuid, UserBodyNonRequired userBodyNonRequired);
 
+    @Mapping(target = "id", source = "id")
+    UserVo toUserVoFromId(String id, UserVo userVoCurrent);
 }

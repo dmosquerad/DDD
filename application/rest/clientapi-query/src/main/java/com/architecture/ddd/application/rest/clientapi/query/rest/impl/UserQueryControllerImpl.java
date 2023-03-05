@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserQueryControllerImpl implements UsersApi {
 
-    public final static String BEAN = "userQueryControllerImpl";
+    public static final String BEAN = "userQueryControllerImpl";
 
     @NonNull
     @Qualifier(UserQueryControllerBoundaryImpl.BEAN)
