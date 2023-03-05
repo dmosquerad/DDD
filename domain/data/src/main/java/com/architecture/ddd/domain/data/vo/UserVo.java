@@ -1,14 +1,13 @@
 package com.architecture.ddd.domain.data.vo;
 
 import com.architecture.ddd.domain.data.type.DocumentType;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Value;
 
 import java.util.UUID;
 
-//Añadir @Builder @Value en vez de @Data
-//@Builder
-//@Value
-@Data
+@Builder
+@Value
 public class UserVo {
 
     String id;

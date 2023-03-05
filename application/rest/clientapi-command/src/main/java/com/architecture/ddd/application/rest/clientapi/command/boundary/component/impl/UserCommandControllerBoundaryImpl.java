@@ -1,10 +1,11 @@
 package com.architecture.ddd.application.rest.clientapi.command.boundary.component.impl;
 
 import com.architecture.ddd.application.rest.clientapi.command.boundary.component.UserCommandControllerBoundary;
-import com.architecture.ddd.domain.data.boundary.mapper.UserVoMapper;
+import com.architecture.ddd.application.rest.clientapi.command.boundary.mapper.vo.UserVoMapper;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import com.architecture.ddd.domain.service.microservice.service.UserService;
 import com.architecture.ddd.domain.service.microservice.service.impl.UserServiceImpl;
+import com.architecture.ddd.infrastructure.validation.util.UserValidationUtil;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserCommandControllerBoundaryImpl implements UserCommandControllerBoundary {
 
-    public final static String BEAN = "userCommandControllerBoundaryImpl";
+    public static final String BEAN = "userCommandControllerBoundaryImpl";
 
     @NonNull
     @Qualifier(UserServiceImpl.BEAN)
@@ -63,7 +64,7 @@ public class UserCommandControllerBoundaryImpl implements UserCommandControllerB
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        UserVo userVoCurrent = UserVoMapper.INSTANCE.updateUserVo(existUserVo, userVo);
+        UserVo userVoCurrent = UserValidationUtil.validateUserVoToUpdate(existUserVo, userVo);
 
         return this.userService.saveUser(userVoCurrent);
     }

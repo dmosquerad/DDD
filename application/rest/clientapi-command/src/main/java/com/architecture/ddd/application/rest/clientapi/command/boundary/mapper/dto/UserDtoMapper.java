@@ -12,12 +12,7 @@ public interface UserDtoMapper {
 
     UserDtoMapper INSTANCE = Mappers.getMapper(UserDtoMapper.class);
 
-    @Mapping(target = "attribute", ignore = true)
-    @Mapping(target = "attribute.email", source = "email")
-    @Mapping(target = "attribute.name", source = "name")
-    @Mapping(target = "attribute.role", source = "role")
-    @Mapping(target = "attribute.documentType", source = "documentType")
+    @Mapping(target = "attribute", source = "userVo")
     @Mapping(target = "links", ignore = true)
     UserDto toUserDto(UserVo userVo);
-
 }
