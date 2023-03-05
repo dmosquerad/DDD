@@ -14,10 +14,9 @@
     </parent>
 
     <dependencies>
-        <!-- MODULE -->
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>microservice</artifactId>
+            <artifactId>data</artifactId>
         </dependency>
     </dependencies>
 

@@ -13,6 +13,7 @@
     </parent>
 
     <modules>
+        <module>mq</module>
         <module>repository</module>
         <module>validation</module>
     </modules>

@@ -1,0 +1,235 @@
+openapi: '3.0.3'
+info:
+  version: 0.0.1
+  title: User API
+paths:
+  /users:
+    options:
+      tags:
+        - users
+      summary: Get all options User
+      operationId: getOptionsUsers
+      responses:
+        '200':
+          description: Expected response to a valid request
+    head:
+      tags:
+        - users
+      summary: check if Users exists
+      operationId: getHeadUsers
+      responses:
+        '204':
+          description: Expected response to a valid request
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+    get:
+      tags:
+        - users
+      summary: Get all Users
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+  /users/{userUuid}:
+    parameters:
+      - name: userUuid
+        in: path
+        required: true
+        description: Uuid User value
+        schema:
+          type: string
+          format: uuid
+          nullable: false
+    options:
+      tags:
+        - users
+      summary: Options an User By User Uuid
+      operationId: getOptionsUsersByUuid
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+    head:
+      tags:
+        - users
+      summary: check if userId exist
+      operationId: existUserById
+      responses:
+        default:
+          description: User exist
+    get:
+      tags:
+        - users
+      summary: Get an User by Uuid
+      operationId: getUserByUuid
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+components:
+  schemas:
+    # common
+    data:
+      required:
+        - attribute
+        - uuid
+        - links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+      discriminator:
+        propertyName: type
+    links:
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          nullable: false
+    response:
+      required:
+        - uuid
+        - date
+        - status
+        - code
+        - data
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+        date:
+          type: string
+          format: date-time
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        code:
+          type: string
+          nullable: false
+    responseError:
+      required:
+        - uuid
+        - date
+        - status
+        - code
+        - tittle
+        - detail
+        - links
+        - source
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          nullable: false
+        date:
+          type: string
+          format: date-time
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        code:
+          type: string
+          nullable: false
+        tittle:
+          type: string
+          nullable: false
+        detail:
+          type: string
+          nullable: false
+        link:
+          type: object
+        source:
+          type: object
+          properties:
+            pointer:
+              type: string
+              nullable: false
+            parameter:
+              type: string
+              nullable: false
+            header:
+              type: object
+        meta:
+          type: object
+    # customResponse
+    responseUser:
+      allOf:
+        - $ref: '#/components/schemas/response'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/userDto'
+    # customRequest
+    userDto:
+      allOf:
+        - $ref: '#/components/schemas/data'
+        - type: object
+          required:
+            - attribute
+            - type
+          properties:
+            attribute:
+              $ref: '#/components/schemas/userBody'
+            links:
+              $ref: '#/components/schemas/links'
+    # body NonRequired
+    userBodyNonRequired:
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+        documentType:
+          type: string
+          enum:
+            - DNI
+            - PASSPORT
+            - OTHER
+    # body Required
+    userBody:
+      allOf:
+        - $ref: '#/components/schemas/userBodyNonRequired'
+        - type: object
+          required:
+            - email
+            - name
+            - role
+            - documentType

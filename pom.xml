@@ -33,12 +33,12 @@
             <!-- MODULES -->
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>rest</artifactId>
+                <artifactId>clientapi-command</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>data</artifactId>
+                <artifactId>clientapi-query</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -53,17 +53,47 @@
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>jpa</artifactId>
+                <artifactId>jpa-data</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
-                <artifactId>mongo</artifactId>
+                <artifactId>jpa-command</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>mongo-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>mongo-query</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>mongo-command</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.architecture.ddd</groupId>
                 <artifactId>validation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>rabbitmq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>command-event-handler</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.architecture.ddd</groupId>
+                <artifactId>util</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- SPRING BOOT -->
@@ -90,6 +120,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
             <!-- DEBUG TOOLS -->
@@ -191,6 +226,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
