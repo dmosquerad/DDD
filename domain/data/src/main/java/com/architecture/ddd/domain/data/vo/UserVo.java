@@ -6,8 +6,8 @@ import lombok.Value;
 
 import java.util.UUID;
 
-@Builder
 @Value
+@Builder(toBuilder = true)
 public class UserVo {
 
     String id;
