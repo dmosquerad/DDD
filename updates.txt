@@ -16,14 +16,14 @@ Se utiliza el uuid ya se aplico tambien en mongo
 Se autogenera en el mapeo si es nuevo si no se detecta del repository
 
 - Analizar si MapStruct sale rentable, tratarlo como clase con dependencias internas en la clase o como Utils (actual como Utils).
-Se trata como utils logica de negocio en boundary o service.
+Se trata como utils logica de negocio en Adapter o service.
 
 - Analizar si sale rentable que los elementos de OPENAPI tengan Builder, o directamente que sean Value y la creación de la respuesta se delega en otro proceso, por ejemplo MapStruct para optimizar la generación automática de las constantes a utilizar.
 
 - Analizar obterner la respuesta de eventHandler de escritura en DB para devolver el dato exacto.
 
 - Analizar si poner transacción en el controlador o en el servicio del modulo del controlador.
-Se pone en el servicio (boundary del controlador).
+Se pone en el servicio (Adapter del controlador).
 
 - Añadir el modulo de validacion en la logica del microservicio, valida datos del objeto ya buscado en el repositorio y transformado a VO.
 Se añade la validacion en la capa de servicio validando el VO, pasando el objeto y comprobando el objeto es valido.

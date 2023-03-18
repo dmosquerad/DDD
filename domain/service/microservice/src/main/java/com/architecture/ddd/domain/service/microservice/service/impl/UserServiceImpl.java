@@ -1,16 +1,14 @@
 package com.architecture.ddd.domain.service.microservice.service.impl;
 
-import com.architecture.ddd.domain.commandeventhandler.mapper.event.UserEventMapper;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import com.architecture.ddd.domain.service.microservice.service.UserService;
-import com.architecture.ddd.infrastructure.repository.jpa.command.boundary.component.JpaUserRepositoryCommandBoundary;
-import com.architecture.ddd.infrastructure.repository.jpa.command.boundary.component.impl.JpaUserRepositoryCommandBoundaryImpl;
-import com.architecture.ddd.infrastructure.repository.mongo.query.boundary.component.MongoUserQueryRepositoryBoundary;
-import com.architecture.ddd.infrastructure.repository.mongo.query.boundary.component.impl.MongoUserQueryRepositoryBoundaryImpl;
+import com.architecture.ddd.infrastructure.repository.jpa.command.adapter.JpaUserRepositoryCommandAdapter;
+import com.architecture.ddd.infrastructure.repository.jpa.command.adapter.impl.JpaUserRepositoryCommandAdapterImpl;
+import com.architecture.ddd.infrastructure.repository.mongo.query.adapter.MongoUserQueryRepositoryAdapter;
+import com.architecture.ddd.infrastructure.repository.mongo.query.adapter.impl.MongoUserQueryRepositoryAdapterImpl;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,46 +21,35 @@ public class UserServiceImpl implements UserService {
     public static final String BEAN = "userServiceImpl";
 
     @NonNull
-    @Qualifier(JpaUserRepositoryCommandBoundaryImpl.BEAN)
-    private final JpaUserRepositoryCommandBoundary jpaUserRepositoryCommandBoundary;
+    @Qualifier(JpaUserRepositoryCommandAdapterImpl.BEAN)
+    private final JpaUserRepositoryCommandAdapter jpaUserRepositoryCommandAdapter;
 
     @NonNull
-    @Qualifier(MongoUserQueryRepositoryBoundaryImpl.BEAN)
-    private final MongoUserQueryRepositoryBoundary mongoUserQueryRepositoryBoundary;
-
-    @NonNull
-    private final ApplicationEventPublisher applicationEventPublisher;
+    @Qualifier(MongoUserQueryRepositoryAdapterImpl.BEAN)
+    private final MongoUserQueryRepositoryAdapter mongoUserQueryRepositoryAdapter;
 
     @Override
     public UserVo getFistUser() {
-        return this.mongoUserQueryRepositoryBoundary.findFirst();
+        return this.mongoUserQueryRepositoryAdapter.findFirst();
     }
 
     @Override
     public List<UserVo> getUserAll() {
-        return this.mongoUserQueryRepositoryBoundary.findAll();
+        return this.mongoUserQueryRepositoryAdapter.findAll();
     }
 
     @Override
     public UserVo getUserByUuid(@NonNull final UUID uuid) {
-        return this.mongoUserQueryRepositoryBoundary.findByUuid(String.valueOf(uuid));
+        return this.mongoUserQueryRepositoryAdapter.findByUuid(String.valueOf(uuid));
     }
 
     @Override
     public UserVo saveUser(@NonNull final UserVo userVo) {
-        UserVo userVoActual = this.jpaUserRepositoryCommandBoundary.save(userVo);
-
-        this.applicationEventPublisher.publishEvent(UserEventMapper.INSTANCE.toUserSaveEvent(userVoActual));
-
-        return userVoActual;
+        return this.jpaUserRepositoryCommandAdapter.save(userVo);
     }
 
     @Override
     public UserVo deleteUser(@NonNull final UserVo userVo) {
-        UserVo userVoActual = this.jpaUserRepositoryCommandBoundary.delete(userVo);
-
-        this.applicationEventPublisher.publishEvent(UserEventMapper.INSTANCE.toUserDeleteEvent(userVoActual));
-
-        return userVoActual;
+        return this.jpaUserRepositoryCommandAdapter.delete(userVo);
     }
 }
