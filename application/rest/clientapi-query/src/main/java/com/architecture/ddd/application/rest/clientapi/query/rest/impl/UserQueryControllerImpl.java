@@ -1,8 +1,8 @@
 package com.architecture.ddd.application.rest.clientapi.query.rest.impl;
 
-import com.architecture.ddd.application.rest.clientapi.query.boundary.component.UserQueryControllerBoundary;
-import com.architecture.ddd.application.rest.clientapi.query.boundary.component.impl.UserQueryControllerBoundaryImpl;
-import com.architecture.ddd.application.rest.clientapi.query.boundary.mapper.dto.UserDtoMapper;
+import com.architecture.ddd.application.rest.clientapi.query.adapter.UserQueryControllerAdapter;
+import com.architecture.ddd.application.rest.clientapi.query.adapter.impl.UserQueryControllerAdapterImpl;
+import com.architecture.ddd.application.rest.clientapi.query.mapper.dto.UserDtoMapper;
 import com.architecture.ddd.application.rest.clientapi.query.dto.ResponseUser;
 import com.architecture.ddd.application.rest.clientapi.query.rest.UsersApi;
 import lombok.NonNull;
@@ -23,8 +23,8 @@ public class UserQueryControllerImpl implements UsersApi {
     public static final String BEAN = "userQueryControllerImpl";
 
     @NonNull
-    @Qualifier(UserQueryControllerBoundaryImpl.BEAN)
-    private final UserQueryControllerBoundary userQueryControllerBoundary;
+    @Qualifier(UserQueryControllerAdapterImpl.BEAN)
+    private final UserQueryControllerAdapter userQueryControllerAdapter;
 
     @Override
     public ResponseEntity<ResponseUser> getAllUsers() {
@@ -33,7 +33,7 @@ public class UserQueryControllerImpl implements UsersApi {
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
                 .code(String.valueOf(HttpStatus.OK.value()))
-                .data(UserDtoMapper.INSTANCE.toUserDto(this.userQueryControllerBoundary.getAllUsers()))
+                .data(UserDtoMapper.INSTANCE.toUserDto(this.userQueryControllerAdapter.getAllUsers()))
                 .build());
     }
 
@@ -44,7 +44,7 @@ public class UserQueryControllerImpl implements UsersApi {
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
                 .code(String.valueOf(HttpStatus.OK.value()))
-                .data(Collections.singletonList(UserDtoMapper.INSTANCE.toUserDto(this.userQueryControllerBoundary.getUserByUuid(userUuid))))
+                .data(Collections.singletonList(UserDtoMapper.INSTANCE.toUserDto(this.userQueryControllerAdapter.getUserByUuid(userUuid))))
                 .build());
     }
 
