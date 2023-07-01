@@ -3,8 +3,8 @@ package com.architecture.ddd.domain.commandeventhandler.component.impl;
 import com.architecture.ddd.domain.commandeventhandler.component.UserCommandEventListener;
 import com.architecture.ddd.domain.commandeventhandler.event.UserDeleteEvent;
 import com.architecture.ddd.domain.commandeventhandler.event.UserSaveEvent;
-import com.architecture.ddd.infrastructure.repository.mongo.command.boundary.component.MongoUserCommandRepositoryBoundary;
-import com.architecture.ddd.infrastructure.repository.mongo.command.boundary.component.impl.MongoUserCommandRepositoryBoundaryImpl;
+import com.architecture.ddd.infrastructure.repository.mongo.command.adapter.MongoUserCommandRepositoryAdapter;
+import com.architecture.ddd.infrastructure.repository.mongo.command.adapter.impl.MongoUserCommandRepositoryAdapterImpl;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,21 +19,21 @@ public class UserCommandEventListenerImpl implements UserCommandEventListener {
     public static final String BEAN = "UserCommandEventListenerImpl";
 
     @NonNull
-    @Qualifier(MongoUserCommandRepositoryBoundaryImpl.BEAN)
-    private final MongoUserCommandRepositoryBoundary mongoUserCommandRepositoryBoundary;
+    @Qualifier(MongoUserCommandRepositoryAdapterImpl.BEAN)
+    private final MongoUserCommandRepositoryAdapter mongoUserCommandRepositoryAdapter;
 
     @Override
     @TransactionalEventListener(classes = UserSaveEvent.class, phase = TransactionPhase.AFTER_COMMIT)
     public void handleUserSaveEvent(@NonNull final UserSaveEvent userSaveEvent) {
 
-        this.mongoUserCommandRepositoryBoundary.save(userSaveEvent.getMessage());
+        this.mongoUserCommandRepositoryAdapter.save(userSaveEvent.getMessage());
     }
 
     @Override
     @TransactionalEventListener(classes = UserDeleteEvent.class, phase = TransactionPhase.AFTER_COMMIT)
     public void handleUserDeleteEvent(@NonNull final UserDeleteEvent userDeleteEvent) {
 
-        this.mongoUserCommandRepositoryBoundary.delete(userDeleteEvent.getMessage());
+        this.mongoUserCommandRepositoryAdapter.delete(userDeleteEvent.getMessage());
     }
 
 }
