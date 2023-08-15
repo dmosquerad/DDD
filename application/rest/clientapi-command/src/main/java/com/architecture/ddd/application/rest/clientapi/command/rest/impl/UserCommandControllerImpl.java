@@ -5,9 +5,9 @@ import com.architecture.ddd.application.rest.clientapi.command.adapter.impl.User
 import com.architecture.ddd.application.rest.clientapi.command.mapper.dto.UserDtoMapper;
 import com.architecture.ddd.application.rest.clientapi.command.mapper.vo.UserVoMapper;
 import com.architecture.ddd.application.rest.clientapi.command.rest.UsersApi;
-import com.architecture.ddd.application.rest.clientapi_command.dto.ResponseUser;
-import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
-import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequired;
+import com.architecture.ddd.application.rest.clientapi_command.dto.ResponseUserDto;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyDto;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequiredDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +31,10 @@ public class UserCommandControllerImpl implements UsersApi {
     private final UserCommandControllerAdapter userCommandControllerAdapter;
 
     @Override
-    public ResponseEntity<ResponseUser> createUser(@NonNull final UserBody userBody) {
-        UserVo userVo = this.userCommandControllerAdapter.createUser(UserVoMapper.INSTANCE.toUserVo(userBody));
+    public ResponseEntity<ResponseUserDto> createUser(@NonNull final UserBodyDto userBodyDto) {
+        UserVo userVo = this.userCommandControllerAdapter.createUser(UserVoMapper.INSTANCE.toUserVo(userBodyDto));
 
-        return ResponseEntity.ok(ResponseUser.builder()
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
@@ -44,10 +44,10 @@ public class UserCommandControllerImpl implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<ResponseUser> deleteUserByUuid(@NonNull final UUID userUuid) {
+    public ResponseEntity<ResponseUserDto> deleteUserByUuid(@NonNull final UUID userUuid) {
         UserVo userVo = this.userCommandControllerAdapter.deleteUserByUuid(userUuid);
 
-        return ResponseEntity.ok(ResponseUser.builder()
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
@@ -57,10 +57,10 @@ public class UserCommandControllerImpl implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<ResponseUser> createOrUpdateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBody userBody) {
-        UserVo userVo = this.userCommandControllerAdapter.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBody(userUuid, userBody));
+    public ResponseEntity<ResponseUserDto> createOrUpdateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyDto userBodyDto) {
+        UserVo userVo = this.userCommandControllerAdapter.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyDto(userUuid, userBodyDto));
 
-        return ResponseEntity.ok(ResponseUser.builder()
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
@@ -70,10 +70,10 @@ public class UserCommandControllerImpl implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<ResponseUser> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyNonRequired userBodyNonRequired) {
-        UserVo userVo = this.userCommandControllerAdapter.updateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyNonRequired(userUuid, userBodyNonRequired));
+    public ResponseEntity<ResponseUserDto> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyNonRequiredDto userBodyNonRequiredDto) {
+        UserVo userVo = this.userCommandControllerAdapter.updateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyNonRequiredDto(userUuid, userBodyNonRequiredDto));
 
-        return ResponseEntity.ok(ResponseUser.builder()
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))

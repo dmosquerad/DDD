@@ -1,7 +1,7 @@
 package com.architecture.ddd.application.rest.clientapi.command.mapper.vo;
 
-import com.architecture.ddd.application.rest.clientapi_command.dto.UserBody;
-import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequired;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyDto;
+import com.architecture.ddd.application.rest.clientapi_command.dto.UserBodyNonRequiredDto;
 import com.architecture.ddd.domain.data.vo.UserVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,13 +17,13 @@ public interface UserVoMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(java.util.UUID.randomUUID())")
-    UserVo toUserVo(UserBody userBody);
+    UserVo toUserVo(UserBodyDto userBodyDto);
 
     @Mapping(target = "id", ignore = true)
-    UserVo toUserVoFromUuidAndUserBody(UUID uuid, UserBody userBody);
+    UserVo toUserVoFromUuidAndUserBodyDto(UUID uuid, UserBodyDto userBodyDto);
 
     @Mapping(target = "id", ignore = true)
-    UserVo toUserVoFromUuidAndUserBodyNonRequired(UUID uuid, UserBodyNonRequired userBodyNonRequired);
+    UserVo toUserVoFromUuidAndUserBodyNonRequiredDto(UUID uuid, UserBodyNonRequiredDto userBodyNonRequiredDto);
 
     @Mapping(target = "id", source = "id")
     UserVo toUserVoFromId(String id, UserVo userVoCurrent);

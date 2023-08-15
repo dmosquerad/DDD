@@ -52,6 +52,7 @@
                             <generatorName>spring</generatorName>
                             <skipOperationExample>true</skipOperationExample>
                             <generateSupportingFiles>false</generateSupportingFiles>
+                            <modelNameSuffix>Dto</modelNameSuffix>
                             <output>${project.build.directory}/generated-sources</output>
                             <invokerPackage>com.architecture.ddd.application.rest.clientapi.query.handler
                             </invokerPackage>
