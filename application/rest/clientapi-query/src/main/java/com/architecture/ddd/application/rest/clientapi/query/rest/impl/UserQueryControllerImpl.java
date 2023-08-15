@@ -3,7 +3,7 @@ package com.architecture.ddd.application.rest.clientapi.query.rest.impl;
 import com.architecture.ddd.application.rest.clientapi.query.adapter.UserQueryControllerAdapter;
 import com.architecture.ddd.application.rest.clientapi.query.adapter.impl.UserQueryControllerAdapterImpl;
 import com.architecture.ddd.application.rest.clientapi.query.mapper.dto.UserDtoMapper;
-import com.architecture.ddd.application.rest.clientapi.query.dto.ResponseUser;
+import com.architecture.ddd.application.rest.clientapi.query.dto.ResponseUserDto;
 import com.architecture.ddd.application.rest.clientapi.query.rest.UsersApi;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,8 @@ public class UserQueryControllerImpl implements UsersApi {
     private final UserQueryControllerAdapter userQueryControllerAdapter;
 
     @Override
-    public ResponseEntity<ResponseUser> getAllUsers() {
-        return ResponseEntity.ok(ResponseUser.builder()
+    public ResponseEntity<ResponseUserDto> getAllUsers() {
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))
@@ -38,8 +38,8 @@ public class UserQueryControllerImpl implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<ResponseUser> getUserByUuid(@NonNull final UUID userUuid) {
-        return ResponseEntity.ok(ResponseUser.builder()
+    public ResponseEntity<ResponseUserDto> getUserByUuid(@NonNull final UUID userUuid) {
+        return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
                 .date(OffsetDateTime.now())
                 .status(String.valueOf(HttpStatus.OK.value()))

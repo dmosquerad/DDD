@@ -224,9 +224,9 @@ components:
             data:
               type: array
               items:
-                $ref: '#/components/schemas/userDto'
+                $ref: '#/components/schemas/user'
     # customRequest
-    userDto:
+    user:
       allOf:
         - $ref: '#/components/schemas/data'
         - type: object
