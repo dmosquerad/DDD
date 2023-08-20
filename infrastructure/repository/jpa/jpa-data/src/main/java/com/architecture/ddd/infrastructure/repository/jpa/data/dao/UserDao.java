@@ -25,7 +25,7 @@ public class UserDao implements Serializable {
     public static final String UUID = "uuid";
     public static final String EMAIL = "email";
     public static final String NAME = "name";
-    public static final String ROLE = "ROLE";
+    public static final String ROLE = "role";
     public static final String DOCUMENT_TYPE = "document_type";
 
     @Serial

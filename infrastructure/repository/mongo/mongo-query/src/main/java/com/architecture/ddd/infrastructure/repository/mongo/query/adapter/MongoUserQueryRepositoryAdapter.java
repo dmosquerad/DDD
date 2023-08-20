@@ -10,5 +10,5 @@ public interface MongoUserQueryRepositoryAdapter {
 
     List<UserVo> findAll();
 
-    UserVo findByUuid(String Uuid);
+    UserVo findByUuid(String uuid);
 }

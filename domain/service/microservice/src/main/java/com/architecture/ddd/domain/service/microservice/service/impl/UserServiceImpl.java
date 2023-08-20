@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVo saveUser(@NonNull final UserVo userVo) {
-        UserVo userVoActual = this.jpaUserRepositoryCommandAdapter.save(userVo);
+        final UserVo userVoActual = this.jpaUserRepositoryCommandAdapter.save(userVo);
 
         this.applicationEventPublisher.publishEvent(UserEventMapper.INSTANCE.toUserSaveEvent(userVoActual));
 
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVo deleteUser(@NonNull final UserVo userVo) {
-        UserVo userVoActual = this.jpaUserRepositoryCommandAdapter.delete(userVo);
+        final UserVo userVoActual = this.jpaUserRepositoryCommandAdapter.delete(userVo);
 
         this.applicationEventPublisher.publishEvent(UserEventMapper.INSTANCE.toUserDeleteEvent(userVoActual));
 

@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>microservice</artifactId>
+            <artifactId>rabbitmq</artifactId>
         </dependency>
         <!-- SPRINGBOOT -->
         <dependency>

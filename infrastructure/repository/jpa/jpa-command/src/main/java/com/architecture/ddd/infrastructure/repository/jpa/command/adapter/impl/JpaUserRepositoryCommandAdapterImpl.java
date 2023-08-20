@@ -19,12 +19,12 @@ public class JpaUserRepositoryCommandAdapterImpl implements JpaUserRepositoryCom
     JpaUserCommandRepository jpaUserCommandRepository;
 
     @Override
-    public UserVo save(final @NonNull UserVo userVo) {
+    public UserVo save(@NonNull final UserVo userVo) {
         return UserVoMapper.INSTANCE.toUserVo(this.jpaUserCommandRepository.save(UserDaoMapper.INSTANCE.toUserDao(userVo)));
     }
 
     @Override
-    public UserVo delete(final @NonNull UserVo userVo) {
+    public UserVo delete(@NonNull final UserVo userVo) {
         this.jpaUserCommandRepository.delete(UserDaoMapper.INSTANCE.toUserDao(userVo));
         return userVo;
     }

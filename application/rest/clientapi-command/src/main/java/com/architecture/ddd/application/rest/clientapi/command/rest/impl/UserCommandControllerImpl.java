@@ -32,7 +32,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUserDto> createUser(@NonNull final UserBodyDto userBodyDto) {
-        UserVo userVo = this.userCommandControllerAdapter.createUser(UserVoMapper.INSTANCE.toUserVo(userBodyDto));
+        final UserVo userVo = this.userCommandControllerAdapter.createUser(UserVoMapper.INSTANCE.toUserVo(userBodyDto));
 
         return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
@@ -45,7 +45,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUserDto> deleteUserByUuid(@NonNull final UUID userUuid) {
-        UserVo userVo = this.userCommandControllerAdapter.deleteUserByUuid(userUuid);
+        final UserVo userVo = this.userCommandControllerAdapter.deleteUserByUuid(userUuid);
 
         return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
@@ -58,7 +58,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUserDto> createOrUpdateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyDto userBodyDto) {
-        UserVo userVo = this.userCommandControllerAdapter.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyDto(userUuid, userBodyDto));
+        final UserVo userVo = this.userCommandControllerAdapter.createOrUpdateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyDto(userUuid, userBodyDto));
 
         return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())
@@ -71,7 +71,7 @@ public class UserCommandControllerImpl implements UsersApi {
 
     @Override
     public ResponseEntity<ResponseUserDto> updateUserByUuid(@NonNull final UUID userUuid, @NonNull final UserBodyNonRequiredDto userBodyNonRequiredDto) {
-        UserVo userVo = this.userCommandControllerAdapter.updateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyNonRequiredDto(userUuid, userBodyNonRequiredDto));
+        final UserVo userVo = this.userCommandControllerAdapter.updateUser(UserVoMapper.INSTANCE.toUserVoFromUuidAndUserBodyNonRequiredDto(userUuid, userBodyNonRequiredDto));
 
         return ResponseEntity.ok(ResponseUserDto.builder()
                 .uuid(UUID.randomUUID())

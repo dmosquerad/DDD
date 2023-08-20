@@ -1,0 +1,40 @@
+#TODO: GENERATE BINDINGS AND EXCHANGES BY DEFAULT
+#Spring cloud
+#spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        defaultconsumer-in-0:
+#          destination: my-exchange
+#          group: queue1
+#        billingconsumer-in-0:
+#          destination: my-exchange
+#          group: queue2
+#        messageconsumer-in-0:
+#          destination: my-exchange
+#          group: queue3
+#        output-out-0:
+#          destination: my-exchange
+#      rabbit:
+#        bindings:
+#          defaultconsumer-in-0:
+#            consumer:
+#              bindingRoutingKey: '*.events2.#'
+#              enable-batching: true
+#              batch-size: 10
+#              receive-timeout: 60
+#          billingconsumer-in-0:
+#            consumer:
+#              bindingRoutingKey: FOO
+#              enable-batching: true
+#              batch-size: 10
+#              receive-timeout: 60
+#          messageconsumer-in-0:
+#            consumer:
+#              bindingRoutingKey: BAR
+#              enable-batching: true
+#              batch-size: 10
+#              receive-timeout: 60
+#          output-out-0:
+#            producer:
+#              routing-key-expression: headers['messageType']

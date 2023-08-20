@@ -10,7 +10,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserValidationUtil {
 
-    public static UserVo validateUserVoToUpdate(final @NonNull UserVo userVoExpected, final @NonNull UserVo userVoCurrent) {
+    public static UserVo validateUserVoToUpdate(@NonNull final UserVo userVoExpected, @NonNull final UserVo userVoCurrent) {
         UserVo.UserVoBuilder userVoFinal = userVoExpected.toBuilder();
 
         if (Objects.nonNull(userVoCurrent.getId())) {
