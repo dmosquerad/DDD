@@ -37,7 +37,7 @@ public class MongoUserQueryRepositoryAdapterImpl implements MongoUserQueryReposi
     }
 
     @Override
-    public UserVo findByUuid(String Uuid) {
+    public UserVo findByUuid(@NonNull final String Uuid) {
         return UserVoMapper.INSTANCE.toUserVo(this.mongoUserQueryRepository.findByUuid(Uuid));
     }
 }

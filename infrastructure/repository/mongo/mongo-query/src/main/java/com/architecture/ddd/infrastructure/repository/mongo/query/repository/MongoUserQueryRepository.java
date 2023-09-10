@@ -10,5 +10,5 @@ public interface MongoUserQueryRepository extends MongoRepository<UserDao, Strin
     @Override
     List<UserDao> findAll();
 
-    UserDao findByUuid(String Uuid);
+    UserDao findByUuid(String uuid);
 }

@@ -25,10 +25,6 @@
         </dependency>
         <dependency>
             <groupId>com.architecture.ddd</groupId>
-            <artifactId>rabbitmq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.architecture.ddd</groupId>
             <artifactId>data</artifactId>
         </dependency>
         <dependency>
